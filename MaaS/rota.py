@@ -1,21 +1,13 @@
 import geocoder
-import gmaps
 import googlemaps
 from geopy.geocoders import Nominatim
-import requests
 from datetime import datetime
-import json
-import re
-from utils import *
-
-# with open('routes.json', 'r') as f:
-#     json_rota = json.loads(f.read())
-
+from .utils import rota_json
 
 class MaaS(object):
     # self.gmaps = None
     def __init__(self):
-        self.gmaps2 = googlemaps.Client(key='ADD_YOUR_KEY')
+        self.gmaps2 = googlemaps.Client(key='API_KEY')
 
     @classmethod
     def local_partida(self):
@@ -23,7 +15,6 @@ class MaaS(object):
         coordenadas_partida = tuple(partida.latlng)
         # coordenadas_partida = (latitude, longitude) # Setar local de Partida caso precisão esteja equivocada
         return coordenadas_partida
-    
     
     def destino(self, local):
         
@@ -51,12 +42,12 @@ class MaaS(object):
         rota_json(self.local, rota)
         return rota
 
-instancia_rota = MaaS()
+# instancia_rota = MaaS()
 
-partida = instancia_rota.local_partida()
-local = 'UBS 5 Riacho Fundo 2' ## Definir local de Destino
-destino = instancia_rota.destino(local)
-caminho = instancia_rota.instrucao_percurso(partida, destino)
+# partida = instancia_rota.local_partida()
+# local = 'UBS 5 Riacho Fundo 2' ## Definir local de Destino
+# destino = instancia_rota.destino(local)
+# caminho = instancia_rota.instrucao_percurso(partida, destino)
 
-instrucoes_percurso = instrucao_texto(caminho) # Lista de comandos para reprodução
-print(*instrucoes_percurso, sep='\n')
+# instrucoes_percurso = instrucao_texto(caminho) # Lista de comandos para reprodução
+# print(*instrucoes_percurso, sep='\n')
